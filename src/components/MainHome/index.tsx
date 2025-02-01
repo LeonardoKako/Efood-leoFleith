@@ -13,6 +13,10 @@ const MainHome = () => {
       .then((res) => setRestaurants(res));
   }, []);
 
+  if (!restaurants) {
+    return <h3>Carregando...</h3>;
+  }
+
   return (
     <Container>
       {restaurants.map((item) => (
