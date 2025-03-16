@@ -23,12 +23,12 @@ const MainHome = () => {
         <CardHome
           id={item.id}
           key={item.id}
-          img={item.capa}
-          title={item.titulo}
-          grade={item.avaliacao}
-          type={item.tipo}
-          highlight={item.destacado}
-          description={item.descricao}
+          capa={item.capa}
+          titulo={item.titulo}
+          avaliacao={item.avaliacao}
+          tipo={item.tipo}
+          destacado={item.destacado}
+          descricao={item.descricao}
         />
       ))}
     </Container>

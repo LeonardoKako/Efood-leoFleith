@@ -3,23 +3,7 @@ import { useParams } from "react-router-dom";
 
 import CardMenu from "../CardMenu";
 import { Container } from "./style";
-
-type Cardapio = {
-  foto: string;
-  preco: number;
-  id: number;
-  nome: string;
-  descricao: string;
-  porcao: string;
-};
-
-type Restaurant = {
-  id: number;
-  nome: string;
-  descricao: string;
-  capa: string;
-  cardapio: Cardapio[];
-};
+import { Restaurant } from "../../pages/Home";
 
 const Menu = () => {
   const { id } = useParams();
@@ -38,16 +22,18 @@ const Menu = () => {
 
   return (
     <Container>
-      {restaurant.cardapio.map((item) => (
-        <CardMenu
-          key={item.id}
-          foto={item.foto}
-          preco={item.preco}
-          nome={item.nome}
-          descricao={item.descricao}
-          porcao={item.porcao}
-        />
-      ))}
+      {restaurant.cardapio &&
+        restaurant.cardapio.map((item) => (
+          <CardMenu
+            key={item.id}
+            id={item.id}
+            foto={item.foto}
+            preco={item.preco}
+            nome={item.nome}
+            descricao={item.descricao}
+            porcao={item.porcao}
+          />
+        ))}
     </Container>
   );
 };

@@ -27,9 +27,9 @@ const Perfil = () => {
     <>
       <HeaderPerfil />
       <Hero
-        nome={restaurant.titulo}
+        titulo={restaurant.titulo}
         tipo={restaurant.tipo}
-        foto={restaurant.capa}
+        capa={restaurant.capa}
       />
       <Menu />
       <Footer />

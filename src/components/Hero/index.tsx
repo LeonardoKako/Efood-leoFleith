@@ -1,16 +1,11 @@
+import { Restaurant } from "../../pages/Home";
 import { BlackScreen, Container, Title, Type } from "./style";
 
-type Props = {
-  foto: string;
-  nome: string;
-  tipo: string;
-};
-
-const Hero = ({ foto, nome, tipo }: Props) => {
+const Hero = ({ capa, titulo, tipo }: Restaurant) => {
   return (
-    <Container style={{ backgroundImage: `url(${foto})` }}>
+    <Container style={{ backgroundImage: `url(${capa})` }}>
       <BlackScreen />
-      <Type>{nome}</Type>
+      <Type>{titulo}</Type>
       <Title>{tipo}</Title>
     </Container>
   );

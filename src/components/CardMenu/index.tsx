@@ -10,15 +10,9 @@ import {
   CloseModal,
 } from "./style";
 
-type Props = {
-  foto: string;
-  preco: number;
-  nome: string;
-  descricao: string;
-  porcao: string;
-};
+import { Cardapio } from "../../pages/Home";
 
-const CardMenu = ({ descricao, foto, nome, porcao, preco }: Props) => {
+const CardMenu = ({ descricao, foto, nome, porcao, preco }: Cardapio) => {
   const [modal, setModal] = useState(false);
 
   return (
