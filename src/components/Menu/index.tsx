@@ -24,15 +24,7 @@ const Menu = () => {
     <Container>
       {restaurant.cardapio &&
         restaurant.cardapio.map((item) => (
-          <CardMenu
-            key={item.id}
-            id={item.id}
-            foto={item.foto}
-            preco={item.preco}
-            nome={item.nome}
-            descricao={item.descricao}
-            porcao={item.porcao}
-          />
+          <CardMenu key={item.id} food={item} />
         ))}
     </Container>
   );

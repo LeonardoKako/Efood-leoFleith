@@ -1,25 +1,16 @@
-import { useEffect, useState } from "react";
-
 import CardHome from "../CardHome";
 import { Container } from "./style";
-import { Restaurant } from "../../pages/Home";
+import { useGetRestaurantsQuery } from "../../services/api";
 
 const MainHome = () => {
-  const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
+  const { data: restaurants, isLoading, error } = useGetRestaurantsQuery();
 
-  useEffect(() => {
-    fetch("https://fake-api-tau.vercel.app/api/efood/restaurantes")
-      .then((res) => res.json())
-      .then((res) => setRestaurants(res));
-  }, []);
-
-  if (!restaurants) {
-    return <h3>Carregando...</h3>;
-  }
+  if (isLoading) return <p>Carregando...</p>;
+  if (error) return <p>Erro ao carregar os restaurantes</p>;
 
   return (
     <Container>
-      {restaurants.map((item) => (
+      {restaurants?.map((item) => (
         <CardHome
           id={item.id}
           key={item.id}

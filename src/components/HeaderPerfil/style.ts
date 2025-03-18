@@ -12,6 +12,10 @@ export const Header = styled.header`
   justify-content: space-around;
   font-size: 18px;
   font-weight: bold;
+
+  p {
+    cursor: pointer;
+  }
 `;
 
 export const Back = styled(Link)`

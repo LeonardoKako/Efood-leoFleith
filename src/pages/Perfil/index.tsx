@@ -1,35 +1,26 @@
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-
-import { Restaurant } from "../Home";
 
 import HeaderPerfil from "../../components/HeaderPerfil";
 import Hero from "../../components/Hero";
 import Menu from "../../components/Menu";
 import Footer from "../../components/Footer";
+import { useGetRestaurantSoloQuery } from "../../services/api";
 
 const Perfil = () => {
   const { id } = useParams();
 
-  const [restaurant, setRestaurant] = useState<Restaurant | null>(null);
+  const { data: restaurant, isLoading, error} = useGetRestaurantSoloQuery(id!);
 
-  useEffect(() => {
-    fetch(`https://fake-api-tau.vercel.app/api/efood/restaurantes/${id}`)
-      .then((res) => res.json())
-      .then((res) => setRestaurant(res));
-  }, [id]);
-
-  if (!restaurant) {
-    return <h3>Carregando...</h3>;
-  }
+  if (isLoading) return <p>Carregando...</p>;
+  if (error) return <p>Erro ao carregar os restaurantes</p>;
 
   return (
     <>
       <HeaderPerfil />
       <Hero
-        titulo={restaurant.titulo}
-        tipo={restaurant.tipo}
-        capa={restaurant.capa}
+        titulo={restaurant?.titulo}
+        tipo={restaurant?.tipo}
+        capa={restaurant?.capa}
       />
       <Menu />
       <Footer />

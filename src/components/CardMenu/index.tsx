@@ -11,9 +11,20 @@ import {
 } from "./style";
 
 import { Cardapio } from "../../pages/Home";
+import { add, open } from "../../store/reducers/cart";
+import { useDispatch } from "react-redux";
 
-const CardMenu = ({ descricao, foto, nome, porcao, preco }: Cardapio) => {
+type Props = {
+  food: Cardapio;
+};
+
+const CardMenu = ({ food }: Props) => {
   const [modal, setModal] = useState(false);
+  const dispatch = useDispatch();
+  const addCart = () => {
+    dispatch(add(food));
+    dispatch(open());
+  };
 
   return (
     <>
@@ -22,27 +33,27 @@ const CardMenu = ({ descricao, foto, nome, porcao, preco }: Cardapio) => {
           <BackGroundBlack onClick={() => setModal(false)} />
           <Item>
             <CloseModal onClick={() => setModal(false)} />
-            <img src={foto} alt="Foto Comida" />
+            <img src={food.foto} alt="Foto Comida" />
             <div>
               <Title style={{ marginTop: "0px" }} fontWeight={"18px"}>
-                {nome}
+                {food.nome}
               </Title>
-              <Description>{descricao}</Description>
-              <Description>Serve: de {porcao}</Description>
-              <Button>Adicionar ao carrinho - R${preco}0</Button>
+              <Description>{food.descricao}</Description>
+              <Description>Serve: de {food.porcao}</Description>
+              <Button onClick={addCart}>
+                Adicionar ao carrinho - R${food.preco}0
+              </Button>
             </div>
           </Item>
         </Modal>
       )}
       <Card>
         <div onClick={() => setModal(true)}>
-          <img src={foto} alt="Foto Comida" />
-          <Title fontWeight={"16px"}>{nome}</Title>
-          <Description>{descricao}</Description>
+          <img src={food.foto} alt="Foto Comida" />
+          <Title fontWeight={"16px"}>{food.nome}</Title>
+          <Description>{food.descricao}</Description>
         </div>
-        <Button onClick={() => console.log("Adicionou ao carrinho")}>
-          Adicionar ao carrinho
-        </Button>
+        <Button onClick={addCart}>Adicionar ao carrinho</Button>
       </Card>
     </>
   );
