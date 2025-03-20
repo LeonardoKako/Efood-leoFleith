@@ -25,9 +25,11 @@ const Cart = () => {
   };
 
   const getTotalPrice = () => {
-    return items.reduce((acumulador: number, valorAtual) => {
-      return (acumulador += valorAtual.preco!);
-    }, 0);
+    return items
+      .reduce((acumulador: number, valorAtual) => {
+        return (acumulador += valorAtual.preco!);
+      }, 0)
+      .toFixed(2);
   };
 
   return (
@@ -48,7 +50,7 @@ const Cart = () => {
         </ul>
         <Prices>
           <p>Valor Total</p>
-          {getTotalPrice() === 0 ? "" : <span>R$ {getTotalPrice()}0</span>}
+          {<span>R$ {getTotalPrice()}</span>}
         </Prices>
         <Button>Continuar com a compra</Button>
       </Sidebar>

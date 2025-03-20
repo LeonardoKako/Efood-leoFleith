@@ -53,7 +53,7 @@ const CardMenu = ({ food }: Props) => {
           <Title fontWeight={"16px"}>{food.nome}</Title>
           <Description>{food.descricao}</Description>
         </div>
-        <Button onClick={addCart}>Adicionar ao carrinho</Button>
+        <Button onClick={() => setModal(true)}>Adicionar ao carrinho</Button>
       </Card>
     </>
   );
